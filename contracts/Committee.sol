@@ -24,6 +24,26 @@ contract Committee {
         uint totalBalance; // Total balance of the session
     }
 
+    // Mapping user to a session
+    mapping(uint => address) public sessionToUser;
+
+    /*
+    @dev Add a user to a session
+    @param: (1) Session ID 
+            (2) Address of user
+    */
+    function addUserToSession(uint _sessionId, address _userAddress) public {
+        sessionToUser[_sessionId] = _userAddress;
+    }
+
+    /*
+    @dev Get users in a said session
+    @param ID of Session 
+    */
+    function getUserInSession(uint _sessionId) public view returns (address) {
+        return sessionToUser[_sessionId];
+    }
+
     /*
     @dev Add money to the committee
     @param Address of user
